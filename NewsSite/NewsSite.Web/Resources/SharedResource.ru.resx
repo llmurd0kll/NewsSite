@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+
+  <data name="Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="AllNews" xml:space="preserve">
+    <value>Все новости</value>
+  </data>
+  <data name="LastNews" xml:space="preserve">
+    <value>Последние новости</value>
+  </data>
+  <data name="LoadMore" xml:space="preserve">
+    <value>Загрузить ещё</value>
+  </data>
+  <data name="NoMoreItems" xml:space="preserve">
+    <value>Больше нет</value>
+  </data>
+  <data name="ErrorLoading" xml:space="preserve">
+    <value>Ошибка загрузки списка</value>
+  </data>
+</root>

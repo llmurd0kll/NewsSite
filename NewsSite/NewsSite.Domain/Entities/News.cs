@@ -7,7 +7,8 @@ namespace NewsSite.Domain.Entities
         {
         public int Id { get; set; }
 
-        [Required, StringLength(200)]
+        [Required(ErrorMessage = "Поле обязательно")]
+        [StringLength(200, ErrorMessage = "Максимум 200 символов")]
         public string TitleRu { get; set; } = string.Empty;
 
         [StringLength(400)]

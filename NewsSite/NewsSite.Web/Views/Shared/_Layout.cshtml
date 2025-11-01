@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@* @inject IHtmlLocalizer<SharedResource> — локализатор, привязанный к SharedResource. *@
+@inject IStringLocalizer<SharedResource> Localizer
+<!DOCTYPE html>
+@* lang в<html> отражает текущую культуру для SEO и доступности. *@
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - NewsSite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            @* @Localizer["News"] — получаем значение ключа из соответствующей .resx по текущей культуре. *@
+            <a href="@Url.Action("Index", "Home")">@Localizer["Home"]</a>
+            <a href="@Url.Action("Index", "News")">@Localizer["News"]</a>
+            <span style="margin-left:auto">
+                <a href="@Url.Action("Set", "Culture", new { culture = "ru", returnUrl = Context.Request.Path })">RU</a> |
+                <a href="@Url.Action("Set", "Culture", new { culture = "en", returnUrl = Context.Request.Path })">EN</a>
+            </span>
+        </nav>
+    </header>
+
+    <main class="content">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <small>&copy; @DateTime.Now.Year NewsSite</small>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

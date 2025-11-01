@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NewsSite.Domain.Entities.News>
+@using NewsSite.Web.Extensions
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+    }
+
+@foreach (var n in Model)
+    {
+    var content = n.ForCulture(culture);
+    <article class="news-item">
+        @if (!string.IsNullOrEmpty(n.ImagePath))
+            {
+            <img src="@n.ImagePath" alt="@content.Title" />
+            }
+        <h3>
+            <a href="@Url.Action("Details", "News", new { id = n.Id })">
+                @content.Title
+            </a>
+        </h3>
+        @if (!string.IsNullOrEmpty(content.Subtitle))
+            {
+            <p>@content.Subtitle</p>
+            }
+        <small>@n.PublishedAt.ToLocalTime().ToString("d", System.Globalization.CultureInfo.CurrentUICulture)</small>
+    </article>
+    }

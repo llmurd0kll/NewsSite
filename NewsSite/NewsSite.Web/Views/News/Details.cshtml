@@ -1,0 +1,27 @@
+﻿@model NewsSite.Domain.Entities.News
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@using NewsSite.Web.Extensions
+@inject IStringLocalizer<SharedResource> L
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = L["News"];
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+    var content = Model.ForCulture(culture);
+    }
+
+<article class="news-details">
+    <h1>@content.Title</h1>
+    @if (!string.IsNullOrEmpty(content.Subtitle))
+        {
+        <h4>@content.Subtitle</h4>
+        }
+    @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+        <img src="@Model.ImagePath" alt="@content.Title" />
+        }
+
+    <div>@Html.Raw(content.Text)</div>
+
+    <p><small>@Model.PublishedAt.ToLocalTime().ToString("f", System.Globalization.CultureInfo.CurrentUICulture)</small></p>
+</article>

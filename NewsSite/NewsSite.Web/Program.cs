@@ -31,26 +31,37 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 
 
 // Localization
+// AddLocalization Ч включает инфраструктуру локализации и указывает папку дл€ ресурсов.
 builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
 builder.Services.AddControllersWithViews()
+    // AddViewLocalization Ч позвол€ет использовать ресурсы в Razor-представлени€х.
     .AddViewLocalization()
+    // AddDataAnnotationsLocalization Ч локализует сообщени€ валидации DataAnnotations.
     .AddDataAnnotationsLocalization();
 
 var supportedCultures = new[] { "ru", "en" };
+// RequestLocalizationOptions Ч список поддерживаемых культур и способ их выбора.
 builder.Services.Configure<RequestLocalizationOptions>(opt =>
 {
-    var cultures = supportedCultures.Select(c => new CultureInfo(c)).ToList();
+    var cultures = new[] { "ru", "en" }.Select(c => new CultureInfo(c)).ToList();
     opt.DefaultRequestCulture = new RequestCulture("ru");
     opt.SupportedCultures = cultures;
     opt.SupportedUICultures = cultures;
-    opt.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
+
+    // пор€док важен: сначала query, потом cookie
+    opt.RequestCultureProviders = new List<IRequestCultureProvider>
+    {
+        new CookieRequestCultureProvider()
+    };
 });
+
 
 var app = builder.Build();
 
 // —идинг админа
 await IdentitySeeder.SeedAsync(app.Services);
 
+// UseRequestLocalization Ч активирует middleware локализации.
 app.UseRequestLocalization();
 app.UseStaticFiles();
 app.UseRouting();

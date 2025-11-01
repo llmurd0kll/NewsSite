@@ -1,14 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36518.9 d17.14
+VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsSite.Web", "NewsSite\NewsSite.Web.csproj", "{BEFB65F6-8E42-4475-9FB1-C26BB36B1AE2}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2E74DF2A-977A-405F-A9F7-5ADD0A27388D} = {2E74DF2A-977A-405F-A9F7-5ADD0A27388D}
-		{D95CAB6C-201A-4CBD-8E61-36520F4CB1E4} = {D95CAB6C-201A-4CBD-8E61-36520F4CB1E4}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsSite.Domain", "NewsSite.Domain\NewsSite.Domain.csproj", "{D95CAB6C-201A-4CBD-8E61-36520F4CB1E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsSite.Data", "NewsSite.Data\NewsSite.Data.csproj", "{2E74DF2A-977A-405F-A9F7-5ADD0A27388D}"
@@ -16,16 +10,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsSite.Data", "NewsSite.D
 		{D95CAB6C-201A-4CBD-8E61-36520F4CB1E4} = {D95CAB6C-201A-4CBD-8E61-36520F4CB1E4}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsSite.Web", "NewsSite.Web\NewsSite.Web.csproj", "{555105D5-3112-DFE0-3A86-BAD5D1DDAAFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BEFB65F6-8E42-4475-9FB1-C26BB36B1AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEFB65F6-8E42-4475-9FB1-C26BB36B1AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEFB65F6-8E42-4475-9FB1-C26BB36B1AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEFB65F6-8E42-4475-9FB1-C26BB36B1AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D95CAB6C-201A-4CBD-8E61-36520F4CB1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D95CAB6C-201A-4CBD-8E61-36520F4CB1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D95CAB6C-201A-4CBD-8E61-36520F4CB1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -34,6 +26,10 @@ Global
 		{2E74DF2A-977A-405F-A9F7-5ADD0A27388D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E74DF2A-977A-405F-A9F7-5ADD0A27388D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E74DF2A-977A-405F-A9F7-5ADD0A27388D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{555105D5-3112-DFE0-3A86-BAD5D1DDAAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{555105D5-3112-DFE0-3A86-BAD5D1DDAAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{555105D5-3112-DFE0-3A86-BAD5D1DDAAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{555105D5-3112-DFE0-3A86-BAD5D1DDAAFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

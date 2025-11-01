@@ -1,0 +1,65 @@
+﻿@model IEnumerable<NewsSite.Domain.Entities.News>
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web.Extensions
+@using NewsSite.Web
+@using Microsoft.AspNetCore.Identity
+@inject IStringLocalizer<SharedResource> Localizer
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = Localizer["Home"].Value;
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+    }
+
+<h1>@Localizer["LastNews"]</h1>
+
+<!-- Блок входа/выхода + админка -->
+<div class="auth-block">
+    @if (SignInManager.IsSignedIn(User))
+        {
+        <span>@User.Identity?.Name</span>
+        <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline">
+            <button type="submit" class="btn btn-link">@Localizer["Logout"]</button>
+        </form>
+
+        @* Ссылка в админку только для роли Admin *@
+        @if (User.IsInRole("Admin"))
+            {
+            <a asp-area="Admin" asp-controller="News" asp-action="Index" class="btn btn-warning">
+                @Localizer["AdminPanel"]
+            </a>
+            }
+        }
+    else
+        {
+        <a asp-controller="Account" asp-action="Login" class="btn btn-link">@Localizer["Login"]</a>
+        <a asp-controller="Account" asp-action="Register" class="btn btn-link">@Localizer["Register"]</a>
+        }
+</div>
+
+<div class="news-grid">
+    @foreach (var n in Model)
+        {
+        var content = n.ForCulture(culture);
+        <article class="news-item">
+            @if (!string.IsNullOrEmpty(n.ImagePath))
+                {
+                <img src="@n.ImagePath" alt="@content.Title" />
+                }
+            <h3><a href="@Url.Action("Details", "News", new { id = n.Id })">@content.Title</a></h3>
+            @if (!string.IsNullOrEmpty(content.Subtitle))
+                {
+                <p>@content.Subtitle</p>
+                }
+            <small>@n.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy")</small>
+        </article>
+        }
+</div>
+
+<p>
+    <a href="@Url.Action("Index", "News")">
+        <button>@Localizer["AllNews"]</button>
+    </a>
+</p>

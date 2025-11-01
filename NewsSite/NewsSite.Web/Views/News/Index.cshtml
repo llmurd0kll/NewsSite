@@ -1,0 +1,39 @@
+﻿@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@model IEnumerable<NewsSite.Domain.Entities.News>
+@inject IStringLocalizer<SharedResource> L
+@{
+    ViewData["Title"] = L["News"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<section class="news-list">
+    <div id="news-container">
+        @await Html.PartialAsync("_NewsList", Model) <!-- первая страница -->
+    </div>
+
+    <button id="load-more" class="btn btn-primary">
+        @L["LoadMore"]
+    </button>
+</section>
+
+    @section Scripts {
+    <script>
+        let page = 1;
+        const btn = document.getElementById("load-more");
+        const container = document.getElementById("news-container");
+
+        btn.addEventListener("click", () => {
+            page++;
+            fetch(`/News/List?page=${page}`)
+                .then(r => r.text())
+                .then(html => {
+                    if (html.trim() === "") {
+                        btn.style.display = "none";
+                    } else {
+                        container.insertAdjacentHTML("beforeend", html);
+                    }
+                });
+        });
+    </script>
+    }
