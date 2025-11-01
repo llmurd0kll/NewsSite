@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Вход";
+    }
+
+<h1>Вход</h1>
+
+<form method="post" asp-action="Login">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Email</label>
+        <input type="email" name="email" required />
+    </div>
+
+    <div>
+        <label>Пароль</label>
+        <input type="password" name="password" required />
+    </div>
+
+    <button type="submit">Войти</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+    {
+    <div class="validation-summary-errors">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+            <p>@error.ErrorMessage</p>
+            }
+    </div>
+    }
