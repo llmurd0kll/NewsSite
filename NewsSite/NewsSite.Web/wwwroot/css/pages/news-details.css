@@ -1,0 +1,5 @@
+/* Детальная страница новости */
+.news-details header { margin-bottom: 16px; }
+.news-details .news-image { width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.news-details .published-date { color: var(--color-muted); }
+.news-details .news-text { margin-top: 16px; line-height: 1.7; }

@@ -1,0 +1,4 @@
+/* Список всех новостей */
+.news-list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.news-list-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 768px) { .news-list-grid { grid-template-columns: 1fr 1fr; } }

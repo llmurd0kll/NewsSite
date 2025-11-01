@@ -1,0 +1,6 @@
+/* Глобальные breakpoint'ы */
+@media (max-width: 768px) {
+  .nav { padding: 10px var(--gutter); }
+  .content { margin: 16px auto; }
+  .table th, .table td { padding: 8px 10px; }
+}

@@ -1,0 +1,25 @@
+/* Кнопки */
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.btn:hover { background: #f9fafb; }
+
+.btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+
+.btn-warning { background: var(--warning); color: #1f2937; border-color: var(--warning); }
+.btn-danger { background: var(--danger); color: #fff; border-color: var(--danger); }
+.btn-success { background: var(--success); color: #fff; border-color: var(--success); }
+
+.btn-link {
+  background: none; border: none; color: var(--nav-text);
+  padding: 0; box-shadow: none; cursor: pointer;
+}

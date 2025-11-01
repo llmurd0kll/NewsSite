@@ -1,0 +1,32 @@
+/* Контейнеры и основные зоны */
+.site-header {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 12px var(--gutter);
+}
+
+.nav a { color: var(--nav-text); opacity: 0.95; }
+.nav a:hover { opacity: 1; text-decoration: underline; }
+
+.content {
+  max-width: var(--container);
+  margin: 24px auto;
+  padding: 0 var(--gutter);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: 48px;
+  padding: 16px var(--gutter);
+  text-align: center;
+  color: var(--color-muted);
+}

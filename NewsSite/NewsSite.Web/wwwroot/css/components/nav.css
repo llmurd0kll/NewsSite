@@ -1,0 +1,11 @@
+/* Навигация и переключатели языка */
+.nav .lang-switch a {
+  margin-left: 12px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+}
+.nav .lang-switch a:hover {
+  border-color: var(--color-border);
+  background: rgba(255,255,255,0.08);
+}

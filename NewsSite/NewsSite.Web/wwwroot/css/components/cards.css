@@ -1,0 +1,13 @@
+/* Карточки новостей */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  background: #fff;
+}
+
+.card img { border-radius: var(--radius-sm); margin-bottom: 12px; }
+.card-title { font-weight: 700; margin-bottom: 8px; }
+.card-subtitle { color: var(--color-muted); margin-bottom: 8px; }
+.card-actions { margin-top: 12px; }

@@ -1,0 +1,6 @@
+/* Печать: чистый контент */
+@media print {
+  .site-header, .site-footer, nav, .btn, .pagination { display: none !important; }
+  .content { max-width: 100%; }
+  a::after { content: " (" attr(href) ")"; font-size: 0.9em; }
+}
