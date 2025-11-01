@@ -1,5 +1,9 @@
 ﻿@model NewsSite.Domain.Entities.News
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@inject IStringLocalizer<SharedResource> Localizer
 @using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
 @{
     var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
     var title = culture == "ru" ? Model.TitleRu : Model.TitleEn;
@@ -14,6 +18,6 @@
     <h3 class="card-title">@title</h3>
     <p class="card-subtitle">@subtitle</p>
     <a asp-controller="News" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">
-        @(culture == "ru" ? "Читать" : "Read more")
+        @Localizer["News_ReadMore"]
     </a>
 </div>

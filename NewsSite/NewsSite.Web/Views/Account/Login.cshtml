@@ -1,10 +1,14 @@
-﻿@model NewsSite.Web.Models.LoginViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@model NewsSite.Web.Models.LoginViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 @{
-    ViewData["Title"] = "Вход";
+    ViewData["Title"] = Localizer["Auth_Login"];
     Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-<h2>Вход</h2>
+<h2>@Localizer["Auth_Login"]</h2>
 
 <form asp-action="Login" method="post">
     @Html.AntiForgeryToken()
@@ -28,9 +32,10 @@
 
     <input type="hidden" asp-for="ReturnUrl" />
 
-    <button type="submit" class="btn btn-primary">Войти</button>
+    <button type="submit" class="btn btn-primary">@Localizer["Auth_LoginButton"]</button>
 </form>
 
 <p>
-    Нет аккаунта? <a asp-action="Register">Зарегистрироваться</a>
+    @Localizer["Auth_NoAccount"]
+    <a asp-action="Register">@Localizer["Auth_Register"]</a>
 </p>

@@ -117,25 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Главная</value>
-  </data>
-  <data name="News" xml:space="preserve">
-    <value>Новости</value>
-  </data>
-  <data name="AllNews" xml:space="preserve">
-    <value>Все новости</value>
-  </data>
-  <data name="LastNews" xml:space="preserve">
-    <value>Последние новости</value>
-  </data>
-  <data name="LoadMore" xml:space="preserve">
-    <value>Загрузить ещё</value>
-  </data>
-  <data name="NoMoreItems" xml:space="preserve">
-    <value>Больше нет</value>
-  </data>
-  <data name="ErrorLoading" xml:space="preserve">
-    <value>Ошибка загрузки списка</value>
-  </data>
+    <!-- Общие -->
+    <data name="Common_Yes" xml:space="preserve"><value>Да</value></data>
+    <data name="Common_No" xml:space="preserve"><value>Нет</value></data>
+
+    <!-- Навигация -->
+    <data name="Menu_Home" xml:space="preserve"><value>Главная</value></data>
+    <data name="Menu_News" xml:space="preserve"><value>Новости</value></data>
+    <data name="Menu_Admin" xml:space="preserve"><value>Админка</value></data>
+    <data name="Menu_Login" xml:space="preserve"><value>Войти</value></data>
+    <data name="Menu_Logout" xml:space="preserve"><value>Выйти</value></data>
+    <data name="Menu_Register" xml:space="preserve"><value>Регистрация</value></data>
+
+    <!-- Админка -->
+    <data name="Admin_IndexTitle" xml:space="preserve"><value>Список новостей (админка)</value></data>
+    <data name="Admin_NewsHeader" xml:space="preserve"><value>Новости (админка)</value></data>
+    <data name="Admin_CreateNews" xml:space="preserve"><value>Создать новость</value></data>
+    <data name="Admin_EditNews" xml:space="preserve"><value>Редактирование новости</value></data>
+    <data name="Admin_DeleteNews" xml:space="preserve"><value>Удаление новости</value></data>
+    <data name="Admin_ConfirmDelete" xml:space="preserve"><value>Вы уверены, что хотите удалить эту новость?</value></data>
+    <data name="Admin_Save" xml:space="preserve"><value>Сохранить</value></data>
+    <data name="Admin_Cancel" xml:space="preserve"><value>Отмена</value></data>
+    <data name="Admin_Delete" xml:space="preserve"><value>Удалить</value></data>
+    <data name="Admin_Create" xml:space="preserve"><value>Создать</value></data>
+
+    <!-- Поля новости -->
+    <data name="Field_TitleRu" xml:space="preserve"><value>Заголовок (RU)</value></data>
+    <data name="Field_TitleEn" xml:space="preserve"><value>Заголовок (EN)</value></data>
+    <data name="Field_SubtitleRu" xml:space="preserve"><value>Подзаголовок (RU)</value></data>
+    <data name="Field_SubtitleEn" xml:space="preserve"><value>Подзаголовок (EN)</value></data>
+    <data name="Field_TextRu" xml:space="preserve"><value>Текст (RU)</value></data>
+    <data name="Field_TextEn" xml:space="preserve"><value>Текст (EN)</value></data>
+    <data name="Field_Image" xml:space="preserve"><value>Изображение</value></data>
+    <data name="Field_PublishedAt" xml:space="preserve"><value>Дата публикации</value></data>
+    <data name="Field_IsPublished" xml:space="preserve"><value>Опубликовано</value></data>
+    <data name="News_NotPublished" xml:space="preserve"><value>Не опубликовано</value></data>
+
+    <!-- Новости -->
+    <data name="News_Title" xml:space="preserve"><value>Новости</value></data>
+    <data name="News_All" xml:space="preserve"><value>Все новости</value></data>
+    <data name="News_Latest" xml:space="preserve"><value>Последние новости</value></data>
+    <data name="News_ReadMore" xml:space="preserve"><value>Читать</value></data>
+    <data name="News_LoadMore" xml:space="preserve"><value>Загрузить ещё</value></data>
+
+    <!-- Аутентификация -->
+    <data name="Auth_Login" xml:space="preserve"><value>Вход</value></data>
+    <data name="Auth_LoginButton" xml:space="preserve"><value>Войти</value></data>
+    <data name="Auth_NoAccount" xml:space="preserve"><value>Нет аккаунта?</value></data>
+    <data name="Auth_Register" xml:space="preserve"><value>Регистрация</value></data>
+    <data name="Auth_RegisterButton" xml:space="preserve"><value>Зарегистрироваться</value></data>
+    <data name="Auth_Email" xml:space="preserve"><value>Email</value></data>
+    <data name="Auth_Password" xml:space="preserve"><value>Пароль</value></data>
+    <data name="Auth_RememberMe" xml:space="preserve"><value>Запомнить меня</value></data>
+    <data name="Auth_ForgotPassword" xml:space="preserve"><value>Забыли пароль?</value></data>
+
+    <!-- Валидация -->
+    <data name="Validation_Required" xml:space="preserve"><value>Поле обязательно для заполнения</value></data>
+    <data name="Validation_InvalidEmail" xml:space="preserve"><value>Некорректный email</value></data>
+    <data name="Validation_PasswordMismatch" xml:space="preserve"><value>Пароли не совпадают</value></data>
+    <data name="Validation_StringLength" xml:space="preserve"><value>Длина поля должна быть от {0} до {1} символов</value></data>
+
+    <!-- Home и Privacy -->
+    <data name="Home_Title" xml:space="preserve"><value>Главная</value></data>
+    <data name="Privacy_Title" xml:space="preserve"><value>Политика конфиденциальности</value></data>
+    <data name="Privacy_Text" xml:space="preserve"><value>Используйте эту страницу для описания политики конфиденциальности вашего сайта.</value></data>
 </root>

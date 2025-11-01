@@ -1,22 +1,25 @@
 ﻿@model IEnumerable<NewsSite.Domain.Entities.News>
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@inject IStringLocalizer<SharedResource> Localizer
 @using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
 @{
-    ViewData["Title"] = "Новости";
+    ViewData["Title"] = Localizer["News_Title"];
     var total = (int)ViewBag.TotalCount;
     var pageSize = (int)ViewBag.PageSize;
-    var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
     }
 
 <section>
     <div class="news-list-header">
-        <h1>@(culture == "ru" ? "Все новости" : "All news")</h1>
+        <h1>@Localizer["News_All"]</h1>
     </div>
 
     <div id="newsContainer" class="news-list-grid">
         @foreach (var n in Model)
             {
-            var title = culture == "ru" ? n.TitleRu : n.TitleEn;
-            var subtitle = culture == "ru" ? n.SubtitleRu : n.SubtitleEn;
+            var title = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ru" ? n.TitleRu : n.TitleEn;
+            var subtitle = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ru" ? n.SubtitleRu : n.SubtitleEn;
 
             <div class="card">
                 @if (!string.IsNullOrEmpty(n.ImagePath))
@@ -25,8 +28,11 @@
                     }
                 <h3 class="card-title">@title</h3>
                 <p class="card-subtitle">@subtitle</p>
+                <small class="published-date">
+                    @n.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy", CultureInfo.CurrentUICulture)
+                </small>
                 <a asp-controller="News" asp-action="Details" asp-route-id="@n.Id" class="btn btn-primary">
-                    @(culture == "ru" ? "Читать" : "Read more")
+                    @Localizer["News_ReadMore"]
                 </a>
             </div>
             }
@@ -36,27 +42,8 @@
         {
         <div class="mt-3 text-center">
             <button id="loadMore" class="btn btn-primary">
-                @(culture == "ru" ? "Загрузить ещё" : "Load more")
+                @Localizer["News_LoadMore"]
             </button>
         </div>
         }
 </section>
-
-    @section Scripts {
-    <script>
-        let skip = @pageSize;
-        const total = @total;
-        const pageSize = @pageSize;
-
-        document.getElementById("loadMore")?.addEventListener("click", async function () {
-            const response = await fetch(`/News/List?skip=${skip}&take=${pageSize}`);
-            const html = await response.text();
-            document.getElementById("newsContainer").insertAdjacentHTML("beforeend", html);
-
-            skip += pageSize;
-            if (skip >= total) {
-                this.style.display = "none";
-            }
-        });
-    </script>
-    }

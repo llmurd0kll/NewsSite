@@ -1,18 +1,21 @@
 ﻿@model IEnumerable<NewsSite.Domain.Entities.News>
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@inject IStringLocalizer<SharedResource> Localizer
 @using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
 @{
-    ViewData["Title"] = "Главная";
-    var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    ViewData["Title"] = Localizer["Home_Title"];
     }
 
 <section>
-    <h1>@(culture == "ru" ? "Последние новости" : "Latest news")</h1>
+    <h1>@Localizer["News_Latest"]</h1>
 
     <div class="home-latest">
         @foreach (var n in Model.Take(3))
             {
-            var title = culture == "ru" ? n.TitleRu : n.TitleEn;
-            var subtitle = culture == "ru" ? n.SubtitleRu : n.SubtitleEn;
+            var title = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ru" ? n.TitleRu : n.TitleEn;
+            var subtitle = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ru" ? n.SubtitleRu : n.SubtitleEn;
 
             <div class="card">
                 @if (!string.IsNullOrEmpty(n.ImagePath))
@@ -21,8 +24,11 @@
                     }
                 <h3 class="card-title">@title</h3>
                 <p class="card-subtitle">@subtitle</p>
+                <small class="published-date">
+                    @n.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy", CultureInfo.CurrentUICulture)
+                </small>
                 <a asp-controller="News" asp-action="Details" asp-route-id="@n.Id" class="btn btn-primary">
-                    @(culture == "ru" ? "Читать" : "Read more")
+                    @Localizer["News_ReadMore"]
                 </a>
             </div>
             }
@@ -30,7 +36,7 @@
 
     <div class="mt-3 text-center">
         <a asp-controller="News" asp-action="Index" class="btn btn-secondary">
-            @(culture == "ru" ? "Все новости" : "All news")
+            @Localizer["News_All"]
         </a>
     </div>
 </section>

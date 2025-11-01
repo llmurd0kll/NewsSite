@@ -117,25 +117,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="News" xml:space="preserve">
-    <value>News</value>
-  </data>
-  <data name="AllNews" xml:space="preserve">
-    <value>All news</value>
-  </data>
-  <data name="LastNews" xml:space="preserve">
-    <value>Latest news</value>
-  </data>
-  <data name="LoadMore" xml:space="preserve">
-    <value>Load more</value>
-  </data>
-  <data name="NoMoreItems" xml:space="preserve">
-    <value>No more items</value>
-  </data>
-  <data name="ErrorLoading" xml:space="preserve">
-    <value>Failed to load list</value>
-  </data>
+    <!-- Common -->
+    <data name="Common_Yes" xml:space="preserve"><value>Yes</value></data>
+    <data name="Common_No" xml:space="preserve"><value>No</value></data>
+
+    <!-- Navigation -->
+    <data name="Menu_Home" xml:space="preserve"><value>Home</value></data>
+    <data name="Menu_News" xml:space="preserve"><value>News</value></data>
+    <data name="Menu_Admin" xml:space="preserve"><value>Admin</value></data>
+    <data name="Menu_Login" xml:space="preserve"><value>Login</value></data>
+    <data name="Menu_Logout" xml:space="preserve"><value>Logout</value></data>
+    <data name="Menu_Register" xml:space="preserve"><value>Register</value></data>
+
+    <!-- Admin -->
+    <data name="Admin_IndexTitle" xml:space="preserve"><value>News list (admin)</value></data>
+    <data name="Admin_NewsHeader" xml:space="preserve"><value>News (admin)</value></data>
+    <data name="Admin_CreateNews" xml:space="preserve"><value>Create news</value></data>
+    <data name="Admin_EditNews" xml:space="preserve"><value>Edit news</value></data>
+    <data name="Admin_DeleteNews" xml:space="preserve"><value>Delete news</value></data>
+    <data name="Admin_ConfirmDelete" xml:space="preserve"><value>Are you sure you want to delete this news?</value></data>
+    <data name="Admin_Save" xml:space="preserve"><value>Save</value></data>
+    <data name="Admin_Cancel" xml:space="preserve"><value>Cancel</value></data>
+    <data name="Admin_Delete" xml:space="preserve"><value>Delete</value></data>
+    <data name="Admin_Create" xml:space="preserve"><value>Create</value></data>
+
+    <!-- News fields -->
+    <data name="Field_TitleRu" xml:space="preserve"><value>Title (RU)</value></data>
+    <data name="Field_TitleEn" xml:space="preserve"><value>Title (EN)</value></data>
+    <data name="Field_SubtitleRu" xml:space="preserve"><value>Subtitle (RU)</value></data>
+    <data name="Field_SubtitleEn" xml:space="preserve"><value>Subtitle (EN)</value></data>
+    <data name="Field_TextRu" xml:space="preserve"><value>Text (RU)</value></data>
+    <data name="Field_TextEn" xml:space="preserve"><value>Text (EN)</value></data>
+    <data name="Field_Image" xml:space="preserve"><value>Image</value></data>
+    <data name="Field_PublishedAt" xml:space="preserve"><value>Published at</value></data>
+    <data name="Field_IsPublished" xml:space="preserve"><value>Published</value></data>
+    <data name="News_NotPublished" xml:space="preserve"><value>Not published</value></data>
+
+    <!-- News (public) -->
+    <data name="News_Title" xml:space="preserve"><value>News</value></data>
+    <data name="News_All" xml:space="preserve"><value>All news</value></data>
+    <data name="News_Latest" xml:space="preserve"><value>Latest news</value></data>
+    <data name="News_ReadMore" xml:space="preserve"><value>Read more</value></data>
+    <data name="News_LoadMore" xml:space="preserve"><value>Load more</value></data>
+
+    <!-- Authentication -->
+    <data name="Auth_Login" xml:space="preserve"><value>Login</value></data>
+    <data name="Auth_LoginButton" xml:space="preserve"><value>Login</value></data>
+    <data name="Auth_NoAccount" xml:space="preserve"><value>No account?</value></data>
+    <data name="Auth_Register" xml:space="preserve"><value>Register</value></data>
+    <data name="Auth_RegisterButton" xml:space="preserve"><value>Register</value></data>
+    <data name="Auth_Email" xml:space="preserve"><value>Email</value></data>
+    <data name="Auth_Password" xml:space="preserve"><value>Password</value></data>
+    <data name="Auth_RememberMe" xml:space="preserve"><value>Remember me</value></data>
+    <data name="Auth_ForgotPassword" xml:space="preserve"><value>Forgot password?</value></data>
+
+    <!-- Validation -->
+    <data name="Validation_Required" xml:space="preserve"><value>This field is required</value></data>
+    <data name="Validation_InvalidEmail" xml:space="preserve"><value>Invalid email</value></data>
+    <data name="Validation_PasswordMismatch" xml:space="preserve"><value>Passwords do not match</value></data>
+    <data name="Validation_StringLength" xml:space="preserve"><value>The field must be between {0} and {1} characters</value></data>
+
+    <!-- Home and Privacy -->
+    <data name="Home_Title" xml:space="preserve"><value>Home</value></data>
+    <data name="Privacy_Title" xml:space="preserve"><value>Privacy Policy</value></data>
+    <data name="Privacy_Text" xml:space="preserve"><value>Use this page to detail your site's privacy policy.</value></data>
+    
 </root>

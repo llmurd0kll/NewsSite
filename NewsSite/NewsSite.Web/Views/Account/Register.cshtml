@@ -1,10 +1,14 @@
-﻿@model NewsSite.Web.Models.RegisterViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@model NewsSite.Web.Models.RegisterViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 @{
-    ViewData["Title"] = "Регистрация";
+    ViewData["Title"] = Localizer["Auth_Register"];
     Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-<h2>Регистрация</h2>
+<h2>@Localizer["Auth_Register"]</h2>
 
 <form asp-action="Register" method="post">
     @Html.AntiForgeryToken()
@@ -27,5 +31,5 @@
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    <button type="submit" class="btn btn-success">@Localizer["Auth_RegisterButton"]</button>
 </form>

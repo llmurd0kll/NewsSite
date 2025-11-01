@@ -1,22 +1,28 @@
-﻿@model IEnumerable<NewsSite.Domain.Entities.News>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using NewsSite.Web
+@model IEnumerable<NewsSite.Domain.Entities.News>
+@inject IStringLocalizer<SharedResource> Localizer
 @{
-    ViewData["Title"] = "Список новостей (админка)";
+    ViewData["Title"] = Localizer["Admin_IndexTitle"];
     }
 
-<h1>Новости (админка)</h1>
+<h1>@Localizer["Admin_NewsHeader"]</h1>
 
 <p>
-    <a asp-area="Admin" asp-controller="News" asp-action="Create" class="btn btn-success">Создать новость</a>
+    <a asp-area="Admin" asp-controller="News" asp-action="Create" class="btn btn-success">
+        @Localizer["Admin_CreateNews"]
+    </a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Заголовок (RU)</th>
-            <th>Заголовок (EN)</th>
-            <th>Дата публикации</th>
-            <th>Опубликовано</th>
+            <th>@Localizer["Field_TitleRu"]</th>
+            <th>@Localizer["Field_TitleEn"]</th>
+            <th>@Localizer["Field_PublishedAt"]</th>
+            <th>@Localizer["Field_IsPublished"]</th>
             <th></th>
         </tr>
     </thead>
@@ -28,10 +34,14 @@
                 <td>@n.TitleRu</td>
                 <td>@n.TitleEn</td>
                 <td>@n.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy")</td>
-                <td>@(n.IsPublished ? "Да" : "Нет")</td>
+                <td>@(n.IsPublished? Localizer["Common_Yes"] : Localizer["Common_No"])</td>
                 <td>
-                    <a asp-area="Admin" asp-controller="News" asp-action="Edit" asp-route-id="@n.Id" class="btn btn-warning">Редактировать</a>
-                    <a asp-area="Admin" asp-controller="News" asp-action="Delete" asp-route-id="@n.Id" class="btn btn-danger">Удалить</a>
+                    <a asp-area="Admin" asp-controller="News" asp-action="Edit" asp-route-id="@n.Id" class="btn btn-warning">
+                        @Localizer["Admin_EditNews"]
+                    </a>
+                    <a asp-area="Admin" asp-controller="News" asp-action="Delete" asp-route-id="@n.Id" class="btn btn-danger">
+                        @Localizer["Admin_DeleteNews"]
+                    </a>
                 </td>
             </tr>
             }
