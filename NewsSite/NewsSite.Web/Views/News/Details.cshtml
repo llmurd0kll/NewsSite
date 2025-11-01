@@ -1,27 +1,53 @@
 ﻿@model NewsSite.Domain.Entities.News
-@using Microsoft.Extensions.Localization
-@using NewsSite.Web
-@using NewsSite.Web.Extensions
-@inject IStringLocalizer<SharedResource> L
+@using System.Globalization
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = L["News"];
-    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
-    var content = Model.ForCulture(culture);
-    }
+    // Определяем текущую культуру
+    var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
-<article class="news-details">
-    <h1>@content.Title</h1>
-    @if (!string.IsNullOrEmpty(content.Subtitle))
+    string title = culture == "ru" ? Model.TitleRu : Model.TitleEn;
+    string subtitle = culture == "ru" ? Model.SubtitleRu : Model.SubtitleEn;
+    string text = culture == "ru" ? Model.TextRu : Model.TextEn;
+
+    ViewData["Title"] = title; // для <title>
+}
+
+<!DOCTYPE html>
+<html lang="@culture">
+<head>
+    <meta charset="utf-8" />
+    <title>@title - NewsSite</title>
+    <meta name="description" content="@subtitle" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <article class="news-details">
+        <header>
+            <h1>@title</h1>
+            @if (!string.IsNullOrEmpty(subtitle))
+            {
+                <h2>@subtitle</h2>
+            }
+            <p class="published-date">
+                @Model.PublishedAt.ToLocalTime().ToString("dd MMMM yyyy", CultureInfo.CurrentUICulture)
+            </p>
+        </header>
+
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
         {
-        <h4>@content.Subtitle</h4>
-        }
-    @if (!string.IsNullOrEmpty(Model.ImagePath))
-        {
-        <img src="@Model.ImagePath" alt="@content.Title" />
+            <figure>
+                <img src="@Model.ImagePath" alt="@title" class="news-image" />
+            </figure>
         }
 
-    <div>@Html.Raw(content.Text)</div>
+        <section class="news-text">
+            @Html.Raw(text)
+        </section>
+    </article>
 
-    <p><small>@Model.PublishedAt.ToLocalTime().ToString("f", System.Globalization.CultureInfo.CurrentUICulture)</small></p>
-</article>
+    <footer>
+        <a asp-controller="News" asp-action="Index">
+            @(culture == "ru" ? "Все новости" : "All news")
+        </a>
+    </footer>
+</body>
+</html>

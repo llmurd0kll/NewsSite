@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using NewsSite.Data;
-using NewsSite.Web.Infrastructure;
+using NewsSite.Web.Data;
 using Serilog;
 using System.Globalization;
 
@@ -58,9 +58,6 @@ builder.Services.Configure<RequestLocalizationOptions>(opt =>
 
 var app = builder.Build();
 
-// Сидинг админа
-await IdentitySeeder.SeedAsync(app.Services);
-
 // UseRequestLocalization — активирует middleware локализации.
 app.UseRequestLocalization();
 app.UseStaticFiles();
@@ -78,3 +75,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+using (var scope = app.Services.CreateScope())
+    {
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await RoleSeeder.SeedRolesAndAdmin(userManager, roleManager);
+    }

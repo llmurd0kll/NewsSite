@@ -1,12 +1,12 @@
-﻿@model NewsSite.Web.Models.LoginViewModel
+﻿@model NewsSite.Web.Models.RegisterViewModel
 @{
-    ViewData["Title"] = "Вход";
+    ViewData["Title"] = "Регистрация";
     Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-<h2>Вход</h2>
+<h2>Регистрация</h2>
 
-<form asp-action="Login" method="post">
+<form asp-action="Register" method="post">
     @Html.AntiForgeryToken()
 
     <div class="form-group">
@@ -21,16 +21,11 @@
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
-    <div class="form-check">
-        <input asp-for="RememberMe" class="form-check-input" />
-        <label asp-for="RememberMe" class="form-check-label"></label>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
 
-    <input type="hidden" asp-for="ReturnUrl" />
-
-    <button type="submit" class="btn btn-primary">Войти</button>
+    <button type="submit" class="btn btn-success">Зарегистрироваться</button>
 </form>
-
-<p>
-    Нет аккаунта? <a asp-action="Register">Зарегистрироваться</a>
-</p>

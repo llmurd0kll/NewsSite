@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NewsSite.Web.Models;
 
 namespace NewsSite.Web.Controllers
     {
@@ -15,41 +16,61 @@ namespace NewsSite.Web.Controllers
             }
 
         // GET: /Account/Login
-        [HttpGet]
         public IActionResult Login(string? returnUrl = null)
             {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
             }
 
-        // POST: /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string email, string password, string? returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model)
             {
-            ViewData["ReturnUrl"] = returnUrl;
+            if (!ModelState.IsValid)
+                return View(model);
 
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
                 {
-                ModelState.AddModelError("", "Введите email и пароль");
-                return View();
+                ModelState.AddModelError("", "Неверный логин или пароль");
+                return View(model);
                 }
 
-            var result = await _signInManager.PasswordSignInAsync(email, password, isPersistent: true, lockoutOnFailure: false);
-
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
             if (result.Succeeded)
                 {
-                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    return Redirect(returnUrl);
-
-                return RedirectToAction("Index", "Home");
+                return Redirect(model.ReturnUrl ?? "/");
                 }
 
             ModelState.AddModelError("", "Неверный логин или пароль");
-            return View();
+            return View(model);
             }
 
-        // POST: /Account/Logout
+        // GET: /Account/Register
+        public IActionResult Register() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+            {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+                {
+                // по умолчанию обычный пользователь
+                await _signInManager.SignInAsync(user, false);
+                return RedirectToAction("Index", "Home");
+                }
+
+            foreach (var error in result.Errors)
+                ModelState.AddModelError("", error.Description);
+
+            return View(model);
+            }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

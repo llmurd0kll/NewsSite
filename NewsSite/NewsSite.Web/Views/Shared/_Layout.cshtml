@@ -1,10 +1,12 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.Extensions.Localization
 @using NewsSite.Web
-@* @inject IHtmlLocalizer<SharedResource> — локализатор, привязанный к SharedResource. *@
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @inject IStringLocalizer<SharedResource> Localizer
+
 <!DOCTYPE html>
-@* lang в<html> отражает текущую культуру для SEO и доступности. *@
 <html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
@@ -15,12 +17,35 @@
 <body>
     <header class="site-header">
         <nav class="nav">
-            @* @Localizer["News"] — получаем значение ключа из соответствующей .resx по текущей культуре. *@
             <a href="@Url.Action("Index", "Home")">@Localizer["Home"]</a>
             <a href="@Url.Action("Index", "News")">@Localizer["News"]</a>
+
             <span style="margin-left:auto">
-                <a href="@Url.Action("Set", "Culture", new { culture = "ru", returnUrl = Context.Request.Path })">RU</a> |
+                <a href="@Url.Action("Set", "Culture", new { culture = "ru", returnUrl = Context.Request.Path })">RU</a>
                 <a href="@Url.Action("Set", "Culture", new { culture = "en", returnUrl = Context.Request.Path })">EN</a>
+            </span>
+
+            <span style="margin-left:20px">
+                @if (SignInManager.IsSignedIn(User))
+                    {
+                    <span>@User.Identity?.Name</span>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-link">@Localizer["Logout"]</button>
+                    </form>
+
+                    @if (User.IsInRole("Admin"))
+                        {
+                        <a asp-area="Admin" asp-controller="News" asp-action="Index" class="btn btn-warning">
+                            @Localizer["AdminPanel"]
+                        </a>
+                        }
+                    }
+                else
+                    {
+                    <a asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
+                    <a asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
+                    }
             </span>
         </nav>
     </header>
@@ -34,5 +59,9 @@
     </footer>
 
     @RenderSection("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 </body>
 </html>
