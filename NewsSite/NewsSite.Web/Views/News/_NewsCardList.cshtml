@@ -1,0 +1,6 @@
+﻿@model IEnumerable<NewsSite.Domain.Entities.News>
+
+@foreach (var n in Model)
+    {
+    @await Html.PartialAsync("_NewsCard", n)
+    }

@@ -1,0 +1,19 @@
+﻿@model NewsSite.Domain.Entities.News
+@using System.Globalization
+@{
+    var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var title = culture == "ru" ? Model.TitleRu : Model.TitleEn;
+    var subtitle = culture == "ru" ? Model.SubtitleRu : Model.SubtitleEn;
+    }
+
+<div class="card">
+    @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+        <img src="@Model.ImagePath" alt="@title" />
+        }
+    <h3 class="card-title">@title</h3>
+    <p class="card-subtitle">@subtitle</p>
+    <a asp-controller="News" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">
+        @(culture == "ru" ? "Читать" : "Read more")
+    </a>
+</div>

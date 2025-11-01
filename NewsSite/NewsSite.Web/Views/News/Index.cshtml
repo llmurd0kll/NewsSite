@@ -2,6 +2,8 @@
 @using System.Globalization
 @{
     ViewData["Title"] = "Новости";
+    var total = (int)ViewBag.TotalCount;
+    var pageSize = (int)ViewBag.PageSize;
     var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
     }
 
@@ -10,7 +12,7 @@
         <h1>@(culture == "ru" ? "Все новости" : "All news")</h1>
     </div>
 
-    <div class="news-list-grid">
+    <div id="newsContainer" class="news-list-grid">
         @foreach (var n in Model)
             {
             var title = culture == "ru" ? n.TitleRu : n.TitleEn;
@@ -30,30 +32,31 @@
             }
     </div>
 
-    <div class="mt-3 text-center">
-        <button id="loadMore" class="btn btn-primary">
-            @(culture == "ru" ? "Загрузить ещё" : "Load more")
-        </button>
-    </div>
+    @if (total > pageSize)
+        {
+        <div class="mt-3 text-center">
+            <button id="loadMore" class="btn btn-primary">
+                @(culture == "ru" ? "Загрузить ещё" : "Load more")
+            </button>
+        </div>
+        }
 </section>
 
     @section Scripts {
     <script>
-        let page = 1;
-        const btn = document.getElementById("load-more");
-        const container = document.getElementById("news-container");
+        let skip = @pageSize;
+        const total = @total;
+        const pageSize = @pageSize;
 
-        btn.addEventListener("click", () => {
-            page++;
-            fetch(`/News/List?page=${page}`)
-                .then(r => r.text())
-                .then(html => {
-                    if (html.trim() === "") {
-                        btn.style.display = "none";
-                    } else {
-                        container.insertAdjacentHTML("beforeend", html);
-                    }
-                });
+        document.getElementById("loadMore")?.addEventListener("click", async function () {
+            const response = await fetch(`/News/List?skip=${skip}&take=${pageSize}`);
+            const html = await response.text();
+            document.getElementById("newsContainer").insertAdjacentHTML("beforeend", html);
+
+            skip += pageSize;
+            if (skip >= total) {
+                this.style.display = "none";
+            }
         });
     </script>
     }
